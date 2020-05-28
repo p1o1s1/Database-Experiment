@@ -1,21 +1,27 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QWidget>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+class mainwindow;
+}
 
-class MainWindow : public QMainWindow
+class mainwindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit mainwindow(QWidget *parent = nullptr);
+    ~mainwindow();
+
+private slots:
+    void on_push_addgoods_2_clicked();
+
+    void on_commodity_list_clicked(const QModelIndex &index);
 
 private:
-    Ui::MainWindow *ui;
+    Ui::mainwindow *ui;
 };
+
 #endif // MAINWINDOW_H

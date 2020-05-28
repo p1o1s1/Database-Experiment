@@ -62,9 +62,10 @@ LoginForm::LoginForm(QDialog *parent) :
 
 }
 
+ QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+
 bool createConnection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     db.setUserName("root");//用户名
     db.setPassword("1999927");//密码
     db.setHostName("localhost");
@@ -99,7 +100,8 @@ void LoginForm::login()
            userNameLEd->setFocus();
         }
     else{
-        QString S =QString("select * from shop.cashier where user_id='%1' and PW='%2' ").arg(userNameLEd->text().trimmed()).arg(pwdLEd->text());
+        //QString S =QString("select * from shop.cashier where user_id='%1' and PW='%2' ").arg(userNameLEd->text().trimmed()).arg(pwdLEd->text());
+        QString S =QString("select * from shop.cashier where user_id='0001' and PW='123456' ");
         query=new QSqlQuery;
         query->exec(S);
         query->last();
