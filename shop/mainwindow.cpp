@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "loginform.cpp"
+#include <QStandardItem>
+#include <qstring.h>
+#include <QString>
 
 mainwindow::mainwindow(QWidget *parent) :
     QWidget(parent),
@@ -53,14 +56,53 @@ mainwindow::~mainwindow()
     delete ui;
 }
 
+int row=0;
+
+QStandardItemModel* itemmodel = new QStandardItemModel();
+
 void mainwindow::on_push_addgoods_2_clicked()
 {
-
+    float sum=0;
+    int k;
+    int oldnum=0;
+    int newnum=0;
+    int flag=0;
+    itemmodel->setHorizontalHeaderLabels({"CID", "Cname", "Num", "Price", "Sum"});
+    ui->buy_list->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    if(ui->CID!=NULL){
+        for(k=0;k<row;k++){
+            if(ui->CID->document()->toPlainText()==itemmodel->item(k,0)->text()){
+                oldnum=itemmodel->item(k,2)->text().toInt();
+                newnum=ui->num->text().toInt()+oldnum;
+                itemmodel->setItem(k,0,new QStandardItem(ui->CID->document()->toPlainText()));
+                itemmodel->setItem(k,1,new QStandardItem(ui->Cname->document()->toPlainText()));
+                itemmodel->setItem(k,2,new QStandardItem(QString("%1").arg(newnum)));
+                itemmodel->setItem(k,3,new QStandardItem(ui->Price->document()->toPlainText()));
+                sum=newnum*ui->Price->document()->toPlainText().toFloat();
+                itemmodel->setItem(k,4,new QStandardItem(QString("%1").arg(sum)));
+                row--;
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0){
+            itemmodel->setItem(row,0,new QStandardItem(ui->CID->document()->toPlainText()));
+            itemmodel->setItem(row,1,new QStandardItem(ui->Cname->document()->toPlainText()));
+            itemmodel->setItem(row,2,new QStandardItem(ui->num->text()));
+            itemmodel->setItem(row,3,new QStandardItem(ui->Price->document()->toPlainText()));
+            sum=ui->num->text().toFloat()*ui->Price->document()->toPlainText().toFloat();
+            itemmodel->setItem(row,4,new QStandardItem(QString("%1").arg(sum)));
+        }
+        row++;
+    }
+    ui->buy_list->setModel(itemmodel);
+    ui->buy_list->show();
 }
 
 void mainwindow::on_commodity_list_clicked(const QModelIndex &index)
 {
     QSqlTableModel *model = new QSqlTableModel;
+    ui->commodity_list->setSelectionBehavior(QAbstractItemView::SelectRows);
     model->setTable("commodity"); //指定要做模型的表
     model->setHeaderData(0, Qt::Horizontal, "CID");
     model->setHeaderData(1, Qt::Horizontal, "Cname");
