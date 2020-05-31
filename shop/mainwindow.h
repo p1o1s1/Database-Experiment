@@ -20,6 +20,12 @@ private slots:
 
     void on_commodity_list_clicked(const QModelIndex &index);
 
+    void on_pbnDeleteSupply_3_clicked();
+
+    void on_pbnAddSuupe_3_clicked();
+
+    void on_buy_list_clicked(const QModelIndex &index);
+
 private:
     Ui::mainwindow *ui;
 };

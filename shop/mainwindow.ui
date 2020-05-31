@@ -40,6 +40,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout_78">
       <item>
        <widget class="QPushButton" name="pbnAddSuupe_3">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>
@@ -60,6 +63,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="pbnDeleteSupply_3">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>
@@ -86,6 +92,9 @@
    </layout>
   </widget>
   <widget class="QTableView" name="commodity_list">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -131,6 +140,9 @@
    </property>
   </widget>
   <widget class="QTextBrowser" name="Cname">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>720</x>
@@ -244,6 +256,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="push_addgoods_2">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>490</x>
@@ -291,6 +306,9 @@
    </property>
   </widget>
   <widget class="QTextBrowser" name="Price">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>810</x>
@@ -301,6 +319,9 @@
    </property>
   </widget>
   <widget class="QTextBrowser" name="Rest">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>510</x>
@@ -401,6 +422,9 @@
    </property>
   </widget>
   <widget class="QTextBrowser" name="textBrowser_3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -413,7 +437,10 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser_4">
+  <widget class="QTextBrowser" name="addup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -608,6 +635,9 @@
    </layout>
   </widget>
   <widget class="QTextEdit" name="CID">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>550</x>

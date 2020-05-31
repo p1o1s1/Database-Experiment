@@ -5,6 +5,8 @@
 #include <qstring.h>
 #include <QString>
 
+int clicked_seq=-1;
+
 mainwindow::mainwindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::mainwindow)
@@ -62,11 +64,12 @@ QStandardItemModel* itemmodel = new QStandardItemModel();
 
 void mainwindow::on_push_addgoods_2_clicked()
 {
-    float sum=0;
+    float sum=0.0;
     int k;
     int oldnum=0;
     int newnum=0;
     int flag=0;
+    float addup=0.0;
     itemmodel->setHorizontalHeaderLabels({"CID", "Cname", "Num", "Price", "Sum"});
     ui->buy_list->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     if(ui->CID!=NULL){
@@ -95,8 +98,14 @@ void mainwindow::on_push_addgoods_2_clicked()
         }
         row++;
     }
+    ui->buy_list->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->buy_list->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->buy_list->setModel(itemmodel);
     ui->buy_list->show();
+    for(k=0;k<row;k++){
+        addup+=itemmodel->item(k,4)->text().toFloat();
+    }
+    ui->addup->setText(QString("%1").arg(addup));
 }
 
 void mainwindow::on_commodity_list_clicked(const QModelIndex &index)
@@ -121,4 +130,38 @@ void mainwindow::on_commodity_list_clicked(const QModelIndex &index)
     ui->Cname->setText(namestr);
     ui->Rest->setText(rest);
     ui->Price->setText(price);
+}
+
+
+int delet=0;
+QModelIndex d_index;
+
+void mainwindow::on_buy_list_clicked(const QModelIndex &index)
+{
+    d_index=index;
+    delet=1;
+    ui->pbnAddSuupe_3->setDisabled(false);
+}
+
+void mainwindow::on_pbnAddSuupe_3_clicked()
+{
+    int k;
+    float addup=0.0;
+    if(delet){
+        itemmodel->removeRow(d_index.row());
+        row--;
+        delet=0;
+        ui->pbnAddSuupe_3->setDisabled(true);
+    }
+    for(k=0;k<row;k++){
+        addup+=itemmodel->item(k,4)->text().toFloat();
+    }
+    ui->addup->setText(QString("%1").arg(addup));
+    ui->buy_list->setModel(itemmodel);
+    ui->buy_list->show();
+}
+
+void mainwindow::on_pbnDeleteSupply_3_clicked()
+{
+
 }
