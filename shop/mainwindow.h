@@ -2,6 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include <QStandardItem>
+#include <qstring.h>
+#include <QString>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QDebug>
+#include <QtSql>
+
+
+extern QSqlQueryModel* model4;
 
 namespace Ui {
 class mainwindow;
@@ -26,7 +36,9 @@ private slots:
 
     void on_buy_list_clicked(const QModelIndex &index);
 
-private:
+    void on_pbnAddSuupe_4_clicked();
+
+public:
     Ui::mainwindow *ui;
 };
 

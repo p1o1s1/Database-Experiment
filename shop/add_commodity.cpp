@@ -12,3 +12,13 @@ add_commodity::~add_commodity()
 {
     delete ui;
 }
+
+void add_commodity::on_btnOk_clicked()
+{
+
+}
+
+void add_commodity::on_btnCancel_clicked()
+{
+     this->close();
+}

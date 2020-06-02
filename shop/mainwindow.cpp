@@ -4,8 +4,12 @@
 #include <QStandardItem>
 #include <qstring.h>
 #include <QString>
+#include "commodity.h"
+#include "add_commodity.h"
+#include "ui_add_commodity.h"
 
 int clicked_seq=-1;
+QSqlQueryModel* model4 = new QSqlQueryModel;
 
 mainwindow::mainwindow(QWidget *parent) :
     QWidget(parent),
@@ -40,13 +44,12 @@ mainwindow::mainwindow(QWidget *parent) :
 
 
 
-        QString S =QString("select Cname,Price,Rest from shop.commodity;");
+        QString S =QString("select CID,Cname,Price,Rest from shop.commodity;");
         query=new QSqlQuery;
         query->exec(S);
         qDebug() << "进入搜索" ;
-        QSqlQueryModel* model = new QSqlQueryModel;
-        model->setQuery(*query);
-        ui->commodity_list->setModel(model);
+        model4->setQuery(*query);
+        ui->commodity_list->setModel(model4);
         ui->commodity_list->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         ui->commodity_list->show();
     }
@@ -133,13 +136,13 @@ void mainwindow::on_commodity_list_clicked(const QModelIndex &index)
 }
 
 
-int delet=0;
-QModelIndex d_index;
+int delets=0;
+QModelIndex d_indexs;
 
 void mainwindow::on_buy_list_clicked(const QModelIndex &index)
 {
-    d_index=index;
-    delet=1;
+    d_indexs=index;
+    delets=1;
     ui->pbnAddSuupe_3->setDisabled(false);
 }
 
@@ -147,10 +150,10 @@ void mainwindow::on_pbnAddSuupe_3_clicked()
 {
     int k;
     float addup=0.0;
-    if(delet){
-        itemmodel->removeRow(d_index.row());
+    if(delets){
+        itemmodel->removeRow(d_indexs.row());
         row--;
-        delet=0;
+        delets=0;
         ui->pbnAddSuupe_3->setDisabled(true);
     }
     for(k=0;k<row;k++){
@@ -164,4 +167,11 @@ void mainwindow::on_pbnAddSuupe_3_clicked()
 void mainwindow::on_pbnDeleteSupply_3_clicked()
 {
 
+}
+
+void mainwindow::on_pbnAddSuupe_4_clicked()
+{
+    commodity *com = new commodity();
+    com->setWindowModality(Qt::ApplicationModal);
+    com->show();
 }

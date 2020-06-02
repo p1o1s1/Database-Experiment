@@ -15,6 +15,11 @@ public:
     explicit add_commodity(QWidget *parent = nullptr);
     ~add_commodity();
 
+private slots:
+    void on_btnOk_clicked();
+
+    void on_btnCancel_clicked();
+
 private:
     Ui::add_commodity *ui;
 };
