@@ -38,7 +38,7 @@
     <string>确认(&amp;L)</string>
    </property>
    <property name="icon">
-    <iconset resource="../HotelManage-master/Src/image.qrc">
+    <iconset>
      <normaloff>:/image/update.png</normaloff>:/image/update.png</iconset>
    </property>
    <property name="iconSize">
@@ -76,7 +76,7 @@
     <string>取消(&amp;C)</string>
    </property>
    <property name="icon">
-    <iconset resource="../HotelManage-master/Src/image.qrc">
+    <iconset>
      <normaloff>:/image/delete.png</normaloff>:/image/delete.png</iconset>
    </property>
    <property name="iconSize">
@@ -245,7 +245,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -270,6 +270,9 @@
      </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="CustomerName">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="font">
         <font>
          <family>楷体</family>
@@ -280,7 +283,7 @@
         <enum>QLineEdit::Normal</enum>
        </property>
        <property name="placeholderText">
-        <string>请输入商品ID</string>
+        <string>自动生成</string>
        </property>
       </widget>
      </item>
@@ -298,7 +301,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="CustomerPwd">
+      <widget class="QLineEdit" name="cname">
        <property name="font">
         <font>
          <family>楷体</family>
@@ -306,7 +309,7 @@
         </font>
        </property>
        <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+        <enum>QLineEdit::Normal</enum>
        </property>
        <property name="placeholderText">
         <string>请输入商品名</string>
@@ -327,7 +330,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="CustomerPhone">
+      <widget class="QLineEdit" name="cprice">
        <property name="font">
         <font>
          <family>楷体</family>
@@ -356,7 +359,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="CustomerPhone_2">
+      <widget class="QLineEdit" name="rest">
        <property name="font">
         <font>
          <family>楷体</family>
@@ -375,8 +378,6 @@
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../HotelManage-master/Src/image.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

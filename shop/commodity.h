@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include "mainwindow.h"
+#include "modify_commodity.h"
+
+extern QSqlQueryModel* modelf;
 
 namespace Ui {
 class commodity;
@@ -25,9 +28,10 @@ private slots:
 
     void on_deleteBtn_2_clicked();
 
-private:
+public:
     Ui::commodity *ui;
     mainwindow mainwindow;
+    //modify_commodity modify_commodity;
 };
 
 #endif // COMMODITY_H

@@ -2,6 +2,8 @@
 #define ADD_COMMODITY_H
 
 #include <QWidget>
+#include "mainwindow.h"
+#include "commodity.h"
 
 namespace Ui {
 class add_commodity;
@@ -20,8 +22,10 @@ private slots:
 
     void on_btnCancel_clicked();
 
-private:
+public:
     Ui::add_commodity *ui;
+    mainwindow mainwindow;
+    commodity commodity;
 };
 
 #endif // ADD_COMMODITY_H
