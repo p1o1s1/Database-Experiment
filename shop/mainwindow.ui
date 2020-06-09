@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1005</width>
+    <width>1062</width>
     <height>489</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>-20</x>
+     <x>30</x>
      <y>440</y>
      <width>482</width>
      <height>38</height>
@@ -39,6 +39,26 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_78">
       <item>
+       <widget class="QPushButton" name="pbnModifySup_3">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>会员登录</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbnregister">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>会员注册</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pbnAddSuupe_3">
         <property name="enabled">
          <bool>false</bool>
@@ -52,17 +72,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pbnModifySup_3">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>会员</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pbnDeleteSupply_3">
+       <widget class="QPushButton" name="pbnpay">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -97,9 +107,9 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>560</x>
      <y>90</y>
-     <width>471</width>
+     <width>481</width>
      <height>241</height>
     </rect>
    </property>
@@ -107,17 +117,17 @@
   <widget class="QTableView" name="buy_list">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>90</y>
-     <width>371</width>
-     <height>281</height>
+     <width>491</width>
+     <height>241</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="lab_Title_4">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>570</x>
      <y>50</y>
      <width>545</width>
      <height>33</height>
@@ -145,7 +155,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>830</x>
      <y>350</y>
      <width>201</width>
      <height>31</height>
@@ -153,26 +163,6 @@
    </property>
    <property name="readOnly">
     <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_10">
-   <property name="geometry">
-    <rect>
-     <x>1050</x>
-     <y>440</y>
-     <width>51</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>数量:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="push_addgoods">
@@ -261,9 +251,9 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>560</x>
      <y>440</y>
-     <width>431</width>
+     <width>471</width>
      <height>41</height>
     </rect>
    </property>
@@ -282,7 +272,7 @@
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>870</x>
      <y>390</y>
      <width>51</width>
      <height>31</height>
@@ -295,7 +285,7 @@
   <widget class="QLabel" name="label_8">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>570</x>
      <y>390</y>
      <width>51</width>
      <height>31</height>
@@ -311,7 +301,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>810</x>
+     <x>920</x>
      <y>390</y>
      <width>111</width>
      <height>31</height>
@@ -324,7 +314,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>620</x>
      <y>390</y>
      <width>91</width>
      <height>31</height>
@@ -334,7 +324,7 @@
   <widget class="QSpinBox" name="num">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>780</x>
      <y>390</y>
      <width>71</width>
      <height>31</height>
@@ -347,7 +337,7 @@
   <widget class="QLabel" name="label_15">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>570</x>
      <y>350</y>
      <width>91</width>
      <height>31</height>
@@ -360,7 +350,7 @@
   <widget class="QLabel" name="label_16">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>780</x>
      <y>350</y>
      <width>91</width>
      <height>31</height>
@@ -373,7 +363,7 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>730</x>
      <y>390</y>
      <width>51</width>
      <height>31</height>
@@ -411,8 +401,8 @@
   <widget class="QLabel" name="label_17">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>390</y>
+     <x>20</x>
+     <y>340</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -421,14 +411,14 @@
     <string>会员卡号:</string>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser_3">
+  <widget class="QTextBrowser" name="vipno">
    <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>390</y>
+     <x>110</x>
+     <y>340</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -443,8 +433,8 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>390</y>
+     <x>70</x>
+     <y>380</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -456,8 +446,8 @@
   <widget class="QLabel" name="label_18">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>390</y>
+     <x>20</x>
+     <y>380</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -469,7 +459,7 @@
   <widget class="QWidget" name="widget_title_3" native="true">
    <property name="geometry">
     <rect>
-     <x>1</x>
+     <x>31</x>
      <y>1</y>
      <width>630</width>
      <height>33</height>
@@ -510,6 +500,25 @@
      <number>0</number>
     </property>
     <item>
+     <widget class="QLabel" name="lab_Title_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>欢迎您……</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QLabel" name="lab_Ico_3">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -528,25 +537,6 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="lab_Title_3">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 10pt &quot;微软雅黑&quot;;</string>
-      </property>
-      <property name="text">
-       <string>欢迎您……</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -640,9 +630,96 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>660</x>
      <y>350</y>
      <width>107</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_19">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>340</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>会员注册费(如果有):</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="discount">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>380</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_20">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>380</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>优惠:</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="vippay">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>340</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_21">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>380</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>实付:</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="pay">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>380</y>
+     <width>91</width>
      <height>31</height>
     </rect>
    </property>

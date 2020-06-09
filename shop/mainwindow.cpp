@@ -6,10 +6,14 @@
 #include <QString>
 #include "commodity.h"
 #include "add_commodity.h"
+#include <QMainWindow>
 #include "ui_add_commodity.h"
+#include "vip.h"
+#include "vipr.h"
 
 int clicked_seq=-1;
 QSqlQueryModel* model4 = new QSqlQueryModel;
+int vipx=0;
 
 mainwindow::mainwindow(QWidget *parent) :
     QWidget(parent),
@@ -49,6 +53,10 @@ mainwindow::mainwindow(QWidget *parent) :
         query->exec(S);
         qDebug() << "进入搜索" ;
         model4->setQuery(*query);
+        ui->addup->setText(QString("%1").arg(0));
+        ui->vippay->setText(QString("%1").arg(0));
+        ui->discount->setText(QString("%1").arg(0));
+        ui->pay->setText(QString("%1").arg(0));
         ui->commodity_list->setModel(model4);
         ui->commodity_list->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
         ui->commodity_list->show();
@@ -109,6 +117,10 @@ void mainwindow::on_push_addgoods_2_clicked()
         addup+=itemmodel->item(k,4)->text().toFloat();
     }
     ui->addup->setText(QString("%1").arg(addup));
+    if(vipx){
+        ui->discount->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.1));
+        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9));
+    }
 }
 
 void mainwindow::on_commodity_list_clicked(const QModelIndex &index)
@@ -160,18 +172,44 @@ void mainwindow::on_pbnAddSuupe_3_clicked()
         addup+=itemmodel->item(k,4)->text().toFloat();
     }
     ui->addup->setText(QString("%1").arg(addup));
+    if(vipx){
+        ui->discount->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.1));
+        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9));
+    }
     ui->buy_list->setModel(itemmodel);
     ui->buy_list->show();
 }
 
-void mainwindow::on_pbnDeleteSupply_3_clicked()
-{
-
-}
 
 void mainwindow::on_pbnAddSuupe_4_clicked()
 {
     commodity *com = new commodity();
     com->setWindowModality(Qt::ApplicationModal);
     com->show();
+}
+
+void mainwindow::on_pbnModifySup_3_clicked()
+{
+    vip *v= new vip(this);
+    connect(v,SIGNAL(dialog_send_a_signal(QString,QString,QString,QString)),this,SLOT(receiveMsg(QString,QString,QString,QString)));//绑定子窗口向主窗口发送消息的信号与槽
+    v->setWindowModality(Qt::ApplicationModal);
+    v->exec();
+}
+
+void mainwindow::receiveMsg(QString vipno,QString vippay,QString discount,QString pay)
+{
+    vipx=1;
+    ui->vipno->setText(vipno);
+    ui->vippay->setText(QString("%1").arg(0));
+    ui->discount->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.1));
+    ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9));
+    ui->pbnModifySup_3->setDisabled(true);
+    ui->pbnregister->setDisabled(true);
+}
+
+void mainwindow::on_pbnregister_clicked()
+{
+    vipr *f=new vipr(this);
+    f->setWindowModality(Qt::ApplicationModal);
+    f->exec();
 }

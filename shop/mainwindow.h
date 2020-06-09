@@ -30,16 +30,20 @@ private slots:
 
     void on_commodity_list_clicked(const QModelIndex &index);
 
-    void on_pbnDeleteSupply_3_clicked();
-
     void on_pbnAddSuupe_3_clicked();
 
     void on_buy_list_clicked(const QModelIndex &index);
 
     void on_pbnAddSuupe_4_clicked();
 
+    void on_pbnModifySup_3_clicked();
+
 public:
     Ui::mainwindow *ui;
+
+private slots:
+    void receiveMsg(QString vipno,QString vippay,QString discount,QString pay);
+    void on_pbnregister_clicked();
 };
 
 #endif // MAINWINDOW_H
