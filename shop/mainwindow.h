@@ -44,6 +44,8 @@ public:
 private slots:
     void receiveMsg(QString vipno,QString vippay,QString discount,QString pay);
     void on_pbnregister_clicked();
+    void vipregister(QString vipname);
+    void on_pbnpay_clicked();
 };
 
 #endif // MAINWINDOW_H

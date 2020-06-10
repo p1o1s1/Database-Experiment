@@ -17,6 +17,7 @@
 #include <QMessageBox>
 #include <QtSql>
 
+QString cashierid;
 
 LoginForm::LoginForm(QDialog *parent) :
     QDialog(parent)
@@ -111,6 +112,8 @@ void LoginForm::login()
         //tr()函数，防止设置中文时乱码
         if(record!=0)
         {
+           cashierid=userNameLEd->text().trimmed();
+           cashierid="0001";
            accept();//关闭窗体，并设置返回值为Accepted
         } else {
            QMessageBox::warning(this, tr("警告！"),

@@ -10,6 +10,8 @@
 #include "ui_add_commodity.h"
 #include "vip.h"
 #include "vipr.h"
+#include <QDateTime>
+
 
 int clicked_seq=-1;
 QSqlQueryModel* model4 = new QSqlQueryModel;
@@ -59,6 +61,7 @@ mainwindow::mainwindow(QWidget *parent) :
         ui->pay->setText(QString("%1").arg(0));
         ui->commodity_list->setModel(model4);
         ui->commodity_list->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        ui->push_addgoods_2->setDisabled(true);
         ui->commodity_list->show();
     }
 }
@@ -109,6 +112,7 @@ void mainwindow::on_push_addgoods_2_clicked()
         }
         row++;
     }
+    ui->pbnpay->setDisabled(false);
     ui->buy_list->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->buy_list->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->buy_list->setModel(itemmodel);
@@ -119,7 +123,11 @@ void mainwindow::on_push_addgoods_2_clicked()
     ui->addup->setText(QString("%1").arg(addup));
     if(vipx){
         ui->discount->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.1));
-        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9));
+        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9+ui->vippay->document()->toPlainText().toFloat()));
+    }
+    else{
+        ui->discount->setText(QString("%1").arg(0));
+        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()+ui->vippay->document()->toPlainText().toFloat()));
     }
 }
 
@@ -127,6 +135,7 @@ void mainwindow::on_commodity_list_clicked(const QModelIndex &index)
 {
     QSqlTableModel *model = new QSqlTableModel;
     ui->commodity_list->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->push_addgoods_2->setDisabled(false);
     model->setTable("commodity"); //指定要做模型的表
     model->setHeaderData(0, Qt::Horizontal, "CID");
     model->setHeaderData(1, Qt::Horizontal, "Cname");
@@ -174,8 +183,10 @@ void mainwindow::on_pbnAddSuupe_3_clicked()
     ui->addup->setText(QString("%1").arg(addup));
     if(vipx){
         ui->discount->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.1));
-        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9));
+        ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9+ui->vippay->document()->toPlainText().toFloat()));
     }
+    if(row==0)
+        ui->pbnpay->setDisabled(true);
     ui->buy_list->setModel(itemmodel);
     ui->buy_list->show();
 }
@@ -210,6 +221,64 @@ void mainwindow::receiveMsg(QString vipno,QString vippay,QString discount,QStrin
 void mainwindow::on_pbnregister_clicked()
 {
     vipr *f=new vipr(this);
+    connect(f,SIGNAL(vipsend(QString)),this,SLOT(vipregister(QString)));
     f->setWindowModality(Qt::ApplicationModal);
     f->exec();
+}
+
+void mainwindow::vipregister(QString vipname)
+{
+    vipx=1;
+    int vipno=1;
+    QSqlQuery *query;
+    QString S;
+    query=new QSqlQuery;
+    for(vipno=1;1;vipno++){
+        S=QString("select * from vip where vipid=%1").arg(vipno);
+        query->exec(S);
+        if(!query->next()){
+            S=QString("insert into vip values(%1,'%2',\"%3\")").arg(vipno).arg(vipname).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss"));
+            query->exec(S);
+            qDebug() << vipname ;
+            break;
+        }
+    }
+    ui->vippay->setText(QString("%1").arg(50));
+    ui->pbnregister->setDisabled(true);
+    ui->pbnModifySup_3->setDisabled(true);
+    ui->vipno->setText(QString("%1").arg(vipno));
+    ui->discount->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.1));
+    ui->pay->setText(QString("%1").arg(ui->addup->document()->toPlainText().toFloat()*0.9+50.0));
+}
+
+void mainwindow::on_pbnpay_clicked()
+{
+    QSqlQuery *query;
+    QString S;
+    query=new QSqlQuery;
+    int oid=1;
+    int k=0;
+    for(oid=1;1;oid++){
+        S=QString("select * from list where oid=%1").arg(oid);
+        query->exec(S);
+        if(!query->next()){
+            if(ui->vipno->document()->toPlainText().toInt()==0){
+                S=QString("insert into list values(%1,\"%2\",%3,NULL,\"%4\");").arg(oid).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(ui->pay->document()->toPlainText()).arg(cashierid);
+            }
+            else
+                S=QString("insert into list values(%1,\"%2\",%3,%4,\"%5\");").arg(oid).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")).arg(ui->pay->document()->toPlainText()).arg(ui->vipno->document()->toPlainText().toInt()).arg(cashierid);
+            qDebug() << S ;
+            qDebug() << cashierid ;
+            query->exec(S);
+            break;
+        }
+    }
+    qDebug() << row ;
+    for(k=0;k<row;k++){
+        S=QString("insert into listdetail values(%1,%2,%3,%4);").arg(oid).arg(itemmodel->item(k,0)->text()).arg(itemmodel->item(k,2)->text()).arg(itemmodel->item(k,3)->text());
+        qDebug() << S ;
+        query->exec(S);
+    }
+    vipx=0;
+    row=0;
 }
